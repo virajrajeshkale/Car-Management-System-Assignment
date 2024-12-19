@@ -38,4 +38,16 @@ public class CarService {
         car.setFuelType(carDetails.getFuelType());
         return carRepository.save(car);
     }
+
+    public List<Car> searchCars(String keyword) {
+        return carRepository.GlobalSearch(keyword, keyword, keyword, keyword, parseIntOrNull(keyword));
+    }
+
+    private Integer parseIntOrNull(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 }
